@@ -1,0 +1,13 @@
+.login__input {
+  border-style: none;
+  background-color: black;
+  border-bottom: 2px solid #cccccc;
+  max-width: 358px;
+  width: 100%;
+  color: #ffffff;
+  margin-bottom: 30px;
+  padding-bottom: 13px;
+}
+.login__input::placeholder {
+  color: #cccccc;
+}

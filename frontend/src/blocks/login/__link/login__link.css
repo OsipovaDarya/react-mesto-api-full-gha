@@ -1,0 +1,19 @@
+.login__link {
+  max-width: 358px;
+  width: 100vh;
+  background: #ffffff;
+  border-radius: 2px;
+  max-height: 50px;
+  height: 100vh;
+  margin-top: 185px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.login__link:hover {
+  opacity: 0.6;
+}
