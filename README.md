@@ -8,8 +8,8 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 84.201.158.151
 
-Frontend https://...
+Frontend https://daryamesto.nomoredomains.monster
 
-Backend https://...
+Backend https://o.darya.mesto.nomoredomains.monster
