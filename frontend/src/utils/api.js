@@ -118,7 +118,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'o.darya.mesto.nomoredomains.monster',
   // headers: {
   //   authorization: 'c9823303-b55f-4738-a9da-237c09a74944',
   //   'Content-Type': 'application/json'
@@ -126,3 +126,4 @@ const api = new Api({
 });
 
 export default api;
+// baseUrl: 'http://localhost:3000'
