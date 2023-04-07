@@ -4,11 +4,11 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/...
+Адрес репозитория: https://github.com/OsipovaDarya/react-mesto-api-full-gha
 
 ## Ссылки на проект
 
-IP-адрес 84.201.158.151
+IP 84.201.158.151
 
 Frontend https://daryamesto.nomoredomains.monster
 
