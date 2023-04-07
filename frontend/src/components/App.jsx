@@ -36,7 +36,7 @@ function App() {
   const [loggedIn, setloggedIn] = useState(false);
   const [emailInfo, setEmailInfo] = useState("")
   const [registrForm, setRegistrForm] = useState({ status: false, text: "" });
-
+  const token = localStorage.getItem('jwt');
 
   const navigate = useNavigate();
 
@@ -98,20 +98,24 @@ function App() {
     localStorage.removeItem('jwt');
     navigate('/sign-in');
     setloggedIn(false);
+    setCurrentUser({});
   }
 
 
 
   useEffect(() => {
-    Promise.all([api.getInfo(), api.getInitialCards()])
-      .then(([user, cards]) => {
-        setCurrentUser(user);
-        setCards(cards);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    if (token) {
+      setloggedIn(true);
+      Promise.all([api.getInfo(), api.getInitialCards()])
+        .then(([user, cards]) => {
+          setCurrentUser(user);
+          setCards(cards);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+  }, [token]);
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
