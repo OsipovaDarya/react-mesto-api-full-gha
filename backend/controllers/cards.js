@@ -1,5 +1,4 @@
 const Card = require('../models/card');
-const { BAD_REQUEST } = require('../errors/Constans');
 const NotFound = require('../errors/NotFound');
 const Forbidden = require('../errors/Forbidden');
 const CastError = require('../errors/CastError');
@@ -18,7 +17,7 @@ module.exports.createCard = (req, res, next) => {
     .then((card) => res.send(card))
     .catch((error) => {
       if (error.name === 'ValidationError') {
-        next(new BAD_REQUEST('Ошибка проверки данных'));
+        next(new CastError('Ошибка проверки данных'));
       } else {
         next(error);
       }
@@ -28,7 +27,7 @@ module.exports.createCard = (req, res, next) => {
 module.exports.deleteCards = (req, res, next) => {
   Card.findById(req.params.cardId)
     .orFail(() => {
-      throw new NotFound('Чужую карточку удалить нельзя');
+      throw new NotFound('Карточка не найдена');
     })
     .then((card) => {
       const owner = card.owner.toString();
@@ -39,7 +38,7 @@ module.exports.deleteCards = (req, res, next) => {
           })
           .catch(next);
       } else {
-        throw new Forbidden('Карточка не найдена');
+        throw new Forbidden('Доступ к странице запрещен');
       }
     })
     .catch((error) => {
