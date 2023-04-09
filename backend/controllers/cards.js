@@ -17,7 +17,7 @@ module.exports.createCard = (req, res, next) => {
     .then((card) => res.send(card))
     .catch((error) => {
       if (error.name === 'ValidationError') {
-        res.status(BAD_REQUEST).send({ message: 'Переданы некорректные данные' });
+        next(new BAD_REQUEST('Ошибка проверки данных'));
       } else {
         next(error);
       }
@@ -38,12 +38,12 @@ module.exports.deleteCards = (req, res, next) => {
           })
           .catch(next);
       } else {
-        throw new Forbidden('Чужую карточку нельзя удалить');
+        throw new Forbidden('Карточка не найдена');
       }
     })
     .catch((error) => {
       if (error.name === 'CastError') {
-        res.status(BAD_REQUEST).send({ message: 'Ошибка проверки данных' });
+        next(new BAD_REQUEST('Ошибка проверки данных'));
       } else {
         next(error);
       }
@@ -63,7 +63,7 @@ module.exports.putLikes = (req, res, next) => {
     .then((card) => res.send(card))
     .catch((error) => {
       if (error.name === 'CastError') {
-        res.status(BAD_REQUEST).send({ message: 'Ошибка проверки данных' });
+        next(new BAD_REQUEST('Ошибка проверки данных'));
       } else {
         next(error);
       }
@@ -83,7 +83,7 @@ module.exports.deleteLikes = (req, res, next) => {
     .then((card) => res.send(card))
     .catch((error) => {
       if (error.name === 'CastError') {
-        res.status(BAD_REQUEST).send({ message: 'Ошибка проверки данных' });
+        next(new BAD_REQUEST('Ошибка проверки данных'));
       } else {
         next(error);
       }

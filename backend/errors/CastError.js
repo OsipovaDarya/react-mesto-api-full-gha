@@ -1,9 +1,9 @@
-const AplicationError = require('./AplicationError');
 const { BAD_REQUEST } = require('./Constans');
 
-class CastError extends AplicationError {
-  constructor() {
-    super(BAD_REQUEST, 'Пользователь не найден');
+class CastError extends Error {
+  constructor(message) {
+    super(message);
+    this.statusCode = BAD_REQUEST;
   }
 }
 

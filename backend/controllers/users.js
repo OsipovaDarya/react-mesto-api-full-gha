@@ -7,10 +7,6 @@ const NotFound = require('../errors/NotFound');
 const ConflictingRequest = require('../errors/ConflictingRequest');
 const CastError = require('../errors/CastError');
 
-const {
-  BAD_REQUEST, NOT_FOUND,
-} = require('../errors/Constans');
-
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((user) => res.send(user))
@@ -26,7 +22,7 @@ module.exports.getUser = (req, res, next) => {
     .then((users) => res.send(users))
     .catch((error) => {
       if (error.name === 'CastError') {
-        next(new BAD_REQUEST('Ошибка проверки данных'));
+        next(new CastError('Ошибка проверки данных'));
       } else {
         next(error);
       }
@@ -96,7 +92,7 @@ module.exports.updateUser = (req, res, next) => {
     .then((users) => res.send(users))
     .catch((error) => {
       if (error.name === 'ValidationError') {
-        next(new CastError('Пользователь не найден'));
+        next(new CastError('Ошибка проверки данных'));
       } else {
         next(error);
       }
@@ -111,10 +107,6 @@ module.exports.updateUserAvatar = (req, res, next) => {
     })
     .then((users) => res.send(users))
     .catch((error) => {
-      if (error.name === 'NotFound') {
-        res.status(NOT_FOUND).send({ message: 'Ошибка проверки данных' });
-      } else {
-        next(error);
-      }
+      next(error);
     });
 };
