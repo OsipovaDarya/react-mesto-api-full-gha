@@ -2,6 +2,7 @@ const Card = require('../models/card');
 const { BAD_REQUEST } = require('../errors/Constans');
 const NotFound = require('../errors/NotFound');
 const Forbidden = require('../errors/Forbidden');
+const CastError = require('../errors/CastError');
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
@@ -43,7 +44,7 @@ module.exports.deleteCards = (req, res, next) => {
     })
     .catch((error) => {
       if (error.name === 'CastError') {
-        next(new BAD_REQUEST('Ошибка проверки данных'));
+        next(new CastError('Ошибка проверки данных'));
       } else {
         next(error);
       }
@@ -63,7 +64,7 @@ module.exports.putLikes = (req, res, next) => {
     .then((card) => res.send(card))
     .catch((error) => {
       if (error.name === 'CastError') {
-        next(new BAD_REQUEST('Ошибка проверки данных'));
+        next(new CastError('Ошибка проверки данных'));
       } else {
         next(error);
       }
@@ -83,7 +84,7 @@ module.exports.deleteLikes = (req, res, next) => {
     .then((card) => res.send(card))
     .catch((error) => {
       if (error.name === 'CastError') {
-        next(new BAD_REQUEST('Ошибка проверки данных'));
+        next(new CastError('Ошибка проверки данных'));
       } else {
         next(error);
       }
